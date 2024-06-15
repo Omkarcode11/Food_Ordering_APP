@@ -10,7 +10,7 @@ import useSendFetch from "../hooks/useSendFetch";
 import Error from "./Error";
 
 function Checkout({ price }) {
-  let { sendData, loading, error,data } = useSendFetch();
+  let { sendData, loading, error,data,setData } = useSendFetch();
   let { items ,clear} = useContext(CartContext);
   let { hideCheckout, process } = useContext(UserProgressContext);
   const cartTotal = items.reduce((a, b) => a + b.quantity * b.price, 0);
@@ -36,10 +36,12 @@ function Checkout({ price }) {
 
   function handleFinish(){
     hideCheckout()
+    setData("")
     clear()
   }
-
-  if(data && !error.status){
+   
+  console.log(data,error)
+  if(data.length>0 && !error.status){
     return <Modal open={process=='checkout'} onClose={handleFinish}>
       <h1>Success!</h1>
       <p>Your order submitted successful</p>

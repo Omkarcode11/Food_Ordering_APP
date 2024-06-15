@@ -49,7 +49,7 @@ function cartReducer(state, action) {
 
     return { ...state, items: updateItems };
   }else if(action.type=="CLEAR"){ 
-    state.items.length = 0
+    return {...state,items:[]}
   }
   return state;
 }

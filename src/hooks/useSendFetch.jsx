@@ -11,7 +11,7 @@ function useSendFetch() {
     setLoading(true);
     try {
       let res = await axios.post(BASE_URL + str, data);
-      setData(res.data);
+      setData(res.data.message);
     } catch (err) {
       setError({ status: true, message: err.message });
     } finally {
@@ -19,11 +19,7 @@ function useSendFetch() {
     }
   }
 
-   useEffect(()=>{
-
-
-   },[])
-  return { loading, sendData, error,data };
+  return { loading, sendData, error,data ,setData};
 }
 
 export default useSendFetch;
